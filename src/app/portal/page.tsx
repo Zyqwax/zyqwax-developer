@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { FormEvent, useCallback, useEffect, useState } from 'react';
@@ -53,7 +54,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen bg-zinc-950 px-[18px] text-zinc-100 sm:px-7">
       <aside className="sticky top-0 hidden h-screen w-64 shrink-0 flex-col border-r border-zinc-800 py-7 pr-6 md:flex">
-        <Link className="mb-12 flex items-center gap-2.5 font-extrabold tracking-[.08em]" href="/"><span className="grid size-[30px] place-items-center rounded-lg bg-amber-400 text-zinc-900">Z</span><span>ZYQWAX<small className="ml-2 text-[10px] tracking-[.15em] text-amber-400">DEV</small></span></Link>
+        <Link className="mb-12 flex items-center gap-2.5 font-extrabold tracking-[.08em]" href="/"><span className="grid size-[30px] place-items-center overflow-hidden rounded-lg"><Image src="/Z-mark-square.png" alt="ZYQWAX" width={128} height={128} className="size-full object-contain" priority /></span><span>ZYQWAX<small className="ml-2 text-[10px] tracking-[.15em] text-amber-400">DEV</small></span></Link>
         <p className="mb-3 px-3 text-[10px] font-extrabold tracking-[.16em] text-zinc-600">PORTAL</p>
         <nav className="space-y-1 text-sm font-semibold">
           <Link className="flex items-center gap-3 rounded-lg bg-zinc-800 px-3 py-3 text-white" href="/portal"><span className="text-amber-400">◈</span> Genel bakış</Link>
@@ -64,7 +65,7 @@ export default function Home() {
       </aside>
       <div className="mx-auto min-h-screen w-full max-w-[1180px] md:pl-8">
         <header className="flex h-[74px] items-center justify-between border-b border-zinc-800">
-          <Link className="flex items-center gap-2.5 font-extrabold tracking-[.08em]" href="/"><span className="grid size-[30px] place-items-center rounded-lg bg-amber-400 text-zinc-900">Z</span> ZYQWAX <small className="text-[10px] tracking-[.15em] text-amber-400">DEVELOPER</small></Link>
+          <Link className="flex items-center gap-2.5 font-extrabold tracking-[.08em]" href="/"><span className="grid size-[30px] place-items-center overflow-hidden rounded-lg"><Image src="/Z-mark-square.png" alt="ZYQWAX" width={128} height={128} className="size-full object-contain" priority /></span> ZYQWAX <small className="text-[10px] tracking-[.15em] text-amber-400">DEVELOPER</small></Link>
           <nav className="flex items-center gap-6 text-sm text-zinc-400"><Link className="hover:text-white" href="/docs">Dokümantasyon</Link><button className="hover:text-white" onClick={() => void logout()}>Çıkış yap</button></nav>
         </header>
 
