@@ -1,4 +1,21 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ZYQWAX Developer Portal
+
+Developer Portal, ZYQWAX Auth üzerinden OAuth ile giriş yapar ve kullanıcıya ait OAuth uygulamalarını yönetir.
+
+## Kurulum
+
+`.env.example` dosyasını `.env.local` olarak kopyalayın. Auth admin panelinden portal için bir OAuth client oluşturup `AUTH_CLIENT_ID`, `AUTH_CLIENT_SECRET` ve callback adresini tanımlayın:
+
+`https://developers.zyqwax.com/api/auth/callback`
+
+Geliştirme için `AUTH_BASE_URL=http://localhost:3000/api` ve callback adresini portalın local adresiyle kullanabilirsiniz.
+
+```bash
+pnpm install
+pnpm dev
+```
+
+Public API dokümantasyonu `/docs` aşamasında eklenecektir.
 
 ## Getting Started
 
