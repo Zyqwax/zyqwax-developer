@@ -1,0 +1,28 @@
+# Scope’lar
+
+| Scope | Alanlar |
+| --- | --- |
+| `profile` | `sub`, `username`, `name`, `avatarUrl` |
+| `email` | `email` |
+| `friends` | arkadaş listesi |
+| `blocks` | engellenen kullanıcılar |
+
+`username` ayrı bir scope değildir; `profile` içinde gelir.
+
+## İstek
+
+```env
+ZYQWAX_SCOPE=profile email friends
+```
+
+Provider’daki OAuth client’ın bu scope’lara izin vermesi gerekir. Kullanıcı consent ekranında istenen alanları görür.
+
+## Kullanıcı verisi
+
+`useAuth()` içindeki `user` değeri provider’ın userinfo response’undan gelir:
+
+```tsx
+const { user } = useAuth();
+
+return <span>{user?.name ?? user?.username}</span>;
+```

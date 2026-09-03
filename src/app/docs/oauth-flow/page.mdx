@@ -1,0 +1,50 @@
+# OAuth akışı
+
+Package aşağıdaki akışı yönetir:
+
+```text
+/api/auth/login
+  -> Zyqwax /oauth/authorize
+  -> consent
+  -> /api/auth/callback
+  -> state + PKCE doğrulaması
+  -> /oauth/token
+  -> /oauth/userinfo
+  -> encrypted HttpOnly cookie
+```
+
+## Login
+
+Kullanıcıyı `/api/auth/login` adresine yönlendir:
+
+```tsx
+<a href="/api/auth/login">Zyqwax ile giriş yap</a>
+```
+
+Login handler state ve PKCE verifier üretir. `returnTo` kullanılırsa yalnızca relative path kabul edilir.
+
+## Callback
+
+Callback handler state cookie’sini doğrular, authorization code’u PKCE verifier ile exchange eder, userinfo alır ve session cookie oluşturur.
+
+## Session
+
+Client provider `/api/auth/me` çağrısını yapar. Server session cookie’yi çözer ve kullanıcı bilgisini döndürür.
+
+## Logout
+
+```tsx
+const { signOut } = useAuth();
+
+<button onClick={() => void signOut()}>Çıkış yap</button>;
+```
+
+Logout session cookie’yi temizler ve ana sayfaya yönlendirir.
+
+## Test sırası
+
+```text
+login -> consent approve -> callback -> me -> logout
+```
+
+Ayrıca consent deny, yanlış state, yanlış PKCE ve authorization code’un ikinci kez kullanılması test edilmelidir.

@@ -1,0 +1,24 @@
+.docs-shell { min-height: 100vh; background: #09090b; color: #f4f4f5; }
+.docs-header { display: flex; align-items: center; justify-content: space-between; height: 72px; padding: 0 32px; border-bottom: 1px solid #27272a; }
+.docs-brand { color: #fafafa; font-weight: 800; letter-spacing: .08em; text-decoration: none; }
+.docs-brand span { margin-left: 8px; color: #fbbf24; font-size: 10px; letter-spacing: .12em; }
+.docs-back { color: #a1a1aa; font-size: 14px; text-decoration: none; }
+.docs-back:hover, .docs-sidebar a:hover { color: #fbbf24; }
+.docs-body { display: grid; grid-template-columns: 240px minmax(0, 760px); gap: 64px; width: min(1100px, calc(100% - 48px)); margin: 0 auto; padding: 48px 0 96px; }
+.docs-sidebar { position: sticky; top: 24px; align-self: start; }
+.docs-sidebar p { margin: 0 0 14px; color: #fbbf24; font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.docs-sidebar nav { display: grid; gap: 5px; }
+.docs-sidebar a { padding: 9px 10px; border-radius: 7px; color: #a1a1aa; font-size: 14px; text-decoration: none; }
+.docs-content { min-width: 0; font-size: 16px; line-height: 1.75; }
+.docs-content h1 { margin: 0 0 18px; font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; letter-spacing: -.04em; }
+.docs-content h2 { margin: 42px 0 12px; color: #fafafa; font-size: 1.5rem; line-height: 1.2; }
+.docs-content h3 { margin: 28px 0 8px; color: #fafafa; font-size: 1.1rem; }
+.docs-content p, .docs-content li { color: #a1a1aa; }
+.docs-content a { color: #fbbf24; }
+.docs-content code { padding: 2px 5px; border-radius: 4px; background: #27272a; color: #fde68a; font-size: .9em; }
+.docs-content pre { overflow-x: auto; margin: 20px 0; padding: 18px; border: 1px solid #27272a; border-radius: 10px; background: #111113; }
+.docs-content pre code { padding: 0; background: transparent; color: #e4e4e7; }
+.docs-content table { display: block; overflow-x: auto; border-collapse: collapse; margin: 20px 0; }
+.docs-content th, .docs-content td { padding: 10px 14px; border: 1px solid #3f3f46; text-align: left; }
+.docs-content th { color: #fafafa; }
+@media (max-width: 760px) { .docs-header { padding: 0 18px; } .docs-back { display: none; } .docs-body { display: block; width: min(100% - 32px, 680px); padding-top: 28px; } .docs-sidebar { position: static; margin-bottom: 36px; } .docs-sidebar nav { display: flex; flex-wrap: wrap; } }

@@ -1,0 +1,23 @@
+# Güvenlik
+
+- Client secret yalnızca server route’larında kullanılır.
+- Session token’ları encrypted HttpOnly cookie içinde tutulur.
+- State ve PKCE verifier kısa ömürlü cookie’de tutulur.
+- Callback URI provider kaydıyla birebir eşleşmelidir.
+- Auth route’ları `nodejs` runtime’da çalışmalıdır.
+- Production’da HTTPS ve Secure cookie kullanılmalıdır.
+- `returnTo` external URL’ye yönlendirilmemelidir.
+- Auth cookie varlığı tek başına authorization kanıtı değildir; gerçek kontrol `/api/auth/me` ile yapılır.
+
+## Yapılmaması gerekenler
+
+```text
+NEXT_PUBLIC_ZYQWAX_CLIENT_SECRET ❌
+localStorage içinde refresh token ❌
+access token’ı URL query içinde taşımak ❌
+auth route’larını Edge runtime’a taşımak ❌
+```
+
+## Runtime doğrulaması
+
+Build ve typecheck güvenlik akışının çalıştığını kanıtlamaz. Gerçek provider ile login, consent, callback, scope, refresh ve logout akışlarını test et.

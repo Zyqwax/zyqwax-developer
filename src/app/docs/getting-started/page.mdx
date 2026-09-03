@@ -1,0 +1,77 @@
+# Başlarken
+
+## Gereksinimler
+
+- Next.js 16 App Router
+- React 19
+- Node.js 20.9 veya üzeri
+- Zyqwax Auth üzerinde kayıtlı OAuth client
+
+## Kurulum
+
+```bash
+pnpm add @zyqwax-auth/nextjs
+```
+
+Workspace/local geliştirmede package dependency’si `workspace:*` olarak kullanılabilir.
+
+## Route’ları ekle
+
+`src/lib/auth-config.ts`:
+
+```ts
+import { getConfig } from "@zyqwax-auth/nextjs";
+
+export function getAuthConfig() {
+  return getConfig();
+}
+```
+
+Her auth route’unda Node runtime kullan:
+
+```ts
+export const runtime = "nodejs";
+```
+
+`app/api/auth/login/route.ts`:
+
+```ts
+import { createLoginHandler } from "@zyqwax-auth/nextjs";
+import { getAuthConfig } from "@/lib/auth-config";
+
+export const runtime = "nodejs";
+export const GET = createLoginHandler(getAuthConfig());
+```
+
+Diğer route’lar:
+
+```ts
+// app/api/auth/callback/route.ts
+export const GET = createCallbackHandler(getAuthConfig());
+
+// app/api/auth/me/route.ts
+export const GET = createMeHandler(getAuthConfig());
+
+// app/api/auth/logout/route.ts
+export const GET = createLogoutHandler(getAuthConfig());
+```
+
+## Client provider
+
+Root layout’ta:
+
+```tsx
+import { AuthProvider } from "@zyqwax-auth/nextjs/client";
+
+<AuthProvider>{children}</AuthProvider>;
+```
+
+Client component içinde:
+
+```tsx
+"use client";
+
+import { useAuth } from "@zyqwax-auth/nextjs/client";
+
+const { user, loading, isAuthenticated, signOut } = useAuth();
+```

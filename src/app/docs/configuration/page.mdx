@@ -1,0 +1,40 @@
+# Yapılandırma
+
+## Environment
+
+```env
+ZYQWAX_ISSUER_URL=https://id.zyqwax.com/api
+ZYQWAX_CLIENT_ID=<registered-client-id>
+ZYQWAX_CLIENT_SECRET=<server-only-secret>
+ZYQWAX_REDIRECT_URI=https://<domain>/api/auth/callback
+ZYQWAX_SESSION_SECRET=<at-least-32-random-characters>
+ZYQWAX_SCOPE=profile email
+ZYQWAX_POST_LOGIN_REDIRECT=/dashboard
+ZYQWAX_POST_LOGOUT_REDIRECT=/
+```
+
+`ZYQWAX_CLIENT_SECRET` ve `ZYQWAX_SESSION_SECRET` hiçbir zaman `NEXT_PUBLIC_` prefix’i ile tanımlanmamalıdır.
+
+## Config override
+
+Environment değerleri gerektiğinde override edilebilir:
+
+```ts
+import { getConfig } from "@zyqwax-auth/nextjs";
+
+const config = getConfig({
+  scope: "profile email friends",
+  postLoginRedirect: "/account",
+  cookieName: "my_app_session",
+  secureCookie: true,
+});
+```
+
+## Local test
+
+```bash
+cp .env.example .env.local
+pnpm dev
+```
+
+Provider panelindeki callback URI ile `ZYQWAX_REDIRECT_URI` karakter karakter aynı olmalıdır.

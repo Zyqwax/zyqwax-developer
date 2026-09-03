@@ -1,0 +1,30 @@
+# Sorun giderme
+
+## `oauth state geçersiz`
+
+- Callback aynı browser/session üzerinden mi çağrıldı?
+- `ZYQWAX_SESSION_SECRET` değişti mi?
+- OAuth state cookie browser tarafından engellendi mi?
+- Local HTTPS/domain ayarlarını kontrol et.
+
+## `redirect_uri geçersiz`
+
+Environment’taki URI ile provider panelindeki URI birebir aynı olmalı. Port, path ve trailing slash farklarını kontrol et.
+
+## `Zyqwax Auth yapılandırması eksik`
+
+Gerekli server environment değerleri build veya route evaluation sırasında yok. `.env.local` veya CI secret’larını kontrol et.
+
+## Login sonrası kullanıcı görünmüyor
+
+- `/api/auth/me` isteğinin cookie gönderdiğini kontrol et.
+- Callback response’undaki `Set-Cookie` header’ını kontrol et.
+- Production’da HTTP yerine HTTPS kullan.
+
+## Refresh çalışmıyor
+
+Provider’ın OAuth token endpoint’i `refresh_token` grant’ini desteklemelidir. Aşağıdaki akış gerçek token expiry ile test edilmelidir:
+
+```text
+login -> callback -> me -> access token expiry -> refresh -> me
+```
